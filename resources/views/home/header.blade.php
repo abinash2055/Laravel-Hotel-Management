@@ -32,11 +32,25 @@
                                 <a class="nav-link" href="gallery.html">Gallery</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="blog.html">Blog</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="contact.html">Contact Us</a>
                             </li>
+
+                            @if (Route::has('login'))
+                                @auth
+                                    <x-app-layout>
+                                    </x-app-layout>
+                                @else
+                                    <li class="nav-item">
+                                        <a class="btn btn-success" style="margin-right:10px;" href="{{url('login')}}">Login</a>
+                                    </li>
+
+                                    @if (Route::has('register'))
+                                        <li class="nav-item">
+                                            <a class="btn btn-primary" href="{{url('register')}}">Register</a>
+                                        </li>
+                                    @endif
+                                @endauth
+                            @endif
                         </ul>
                     </div>
                 </nav>

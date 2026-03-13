@@ -12,7 +12,16 @@ email: admin@gmail.com
 password: 87654321
 
 
+user 2
+name: user2
+phone: 7894512473
+email: user2@gmail.com
+password: 741852963
+
+
+
+
 video link :-->  https://www.youtube.com/playlist?list=PLm8sgxwSZofeShFFRAfENHymQoKemCGtR
 
-Video --> 04 / 27
+Video --> 06 / 27
 Time ---> 00.00
