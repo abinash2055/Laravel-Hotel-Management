@@ -19,9 +19,8 @@ email: user2@gmail.com
 password: 741852963
 
 
-
-
 video link :-->  https://www.youtube.com/playlist?list=PLm8sgxwSZofeShFFRAfENHymQoKemCGtR
 
+
 Video --> 06 / 27
-Time ---> 00.00
+Time ---> 00.25
