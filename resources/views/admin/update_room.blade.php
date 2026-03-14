@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <base href="/public">
     @include('admin.css')
 
     <style type="text/css">
@@ -33,7 +34,7 @@
         }
 
         .desc_box {
-            height: 210px;
+            height: 200px;
         }
 
         input,
@@ -74,43 +75,52 @@
                 <div class="form-container">
 
                     <div class="form-title">
-                        Add Room
+                        Update Room
                     </div>
 
-                    <form action="{{ url('add_room') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('edit_room', $data->id) }}" method="POST" enctype="multipart/form-data">
 
                         @csrf
+                        @method('PUT')
 
                         <div class="form-group">
                             <label>Room Title</label>
-                            <input type="text" name="title" required>
+                            <input type="text" name="title" value="{{ $data->room_title }}" required>
                         </div>
 
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea class=".desc_box" name="description" required></textarea>
+                            <textarea class="desc_box" name="description" required>{{ $data->description }}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label>Price</label>
-                            <input type="number" name="price" required>
+                            <input type="number" name="price" value="{{ $data->price }}" required>
                         </div>
 
                         <div class="form-group">
                             <label>Room Type</label>
                             <select name="type">
-                                <option value="regular">Regular</option>
-                                <option value="premium">Premium</option>
-                                <option value="deluxe">Deluxe</option>
+                                <option value="regular" {{ $data->room_type == 'regular' ? 'selected' : '' }}>Regular
+                                </option>
+                                <option value="premium" {{ $data->room_type == 'premium' ? 'selected' : '' }}>Premium
+                                </option>
+                                <option value="deluxe" {{ $data->room_type == 'deluxe' ? 'selected' : '' }}>Deluxe
+                                </option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label>Free Wifi</label>
                             <select name="wifi">
-                                <option value="yes">Yes</option>
-                                <option value="no">No</option>
+                                <option value="yes" {{ $data->wifi == 'yes' ? 'selected' : '' }}>Yes</option>
+                                <option value="no" {{ $data->wifi == 'no' ? 'selected' : '' }}>No</option>
                             </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Current Image</label>
+                            <img width="100" src="/room/{{ $data->image }}">
                         </div>
 
                         <div class="form-group">
@@ -119,7 +129,7 @@
                         </div>
 
                         <div class="submit-btn">
-                            <input type="submit" value="Add Room" class="btn btn-primary">
+                            <input type="submit" value="Update Room" class="btn btn-primary">
                         </div>
 
                     </form>

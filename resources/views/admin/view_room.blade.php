@@ -87,6 +87,7 @@
                             <th>Room Type</th>
                             <th>Image</th>
                             <th>Delete</th>
+                            <th>Update</th>
                         </tr>
 
                         @foreach($data as $data)
@@ -110,17 +111,21 @@
                                         <button class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
+                                <td>
+                                    <a href="{{url('room_update', $data->id)}}" class="btn btn-warning">Update</a>
+                                </td>
                             </tr>
                         @endforeach
-                        </table> </div>
+                    </table>
                 </div>
             </div>
         </div>
-        <!-- body section  -->
+    </div>
+    <!-- body section  -->
 
-        <!-- Footer  -->
-        @include('admin.footer')
-        <!-- Footer  -->
+    <!-- Footer  -->
+    @include('admin.footer')
+    <!-- Footer  -->
 </body>
 
 </html>
