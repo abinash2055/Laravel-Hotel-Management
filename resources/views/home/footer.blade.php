@@ -41,9 +41,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
-
                         <p>
-                            © 2019 All Rights Reserved. Design by <a href="https://html.design/"> Free Html
+                            © 2026 All Rights Reserved. Design by <a href="https://html.design/"> Free Html
                                 Templates</a>
                             <br><br>
                             Distributed by <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
@@ -61,6 +60,7 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery-3.0.0.min.js"></script>
+
 <!-- sidebar -->
 <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="js/custom.js"></script>

@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 
-
+// Admin Controller
 Route::get('/', [AdminController::class, 'home']);
 Route::get('/home', [AdminController::class, 'index'])->name('home');
 Route::get('/create_room', [AdminController::class, 'create_room']);
@@ -12,3 +13,8 @@ Route::get('/view_room', [AdminController::class, 'view_room']);
 Route::delete('/room_delete/{id}', [AdminController::class, 'room_delete'])->name('room_delete');
 Route::get('/room_update/{id}', [AdminController::class, 'room_update']);
 Route::put('/edit_room/{id}', [AdminController::class, 'edit_room']);
+
+
+// Home Controller
+Route::get('/room_details/{id}', [HomeController::class, 'room_details']);
+Route::post('/add_booking/{id}', [HomeController::class, 'add_booking']);
