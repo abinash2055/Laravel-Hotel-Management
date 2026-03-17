@@ -14,7 +14,7 @@
         <span class="heading">Main</span>
         <ul class="list-unstyled">
             <li class="active">
-                <a href="index.html"> <i class="icon-home"></i>Home </a>
+                <a href="index.html"> <i class="icon-home"></i>Home</a>
             </li>
             <li>
                 <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse">
@@ -24,6 +24,9 @@
                     <li><a href="{{ url('create_room') }}">Add Rooms</a></li>
                     <li><a href="{{ url('view_room') }}">View Rooms</a></li>
                 </ul>
+            </li>
+            <li>
+                <a href="{{ url('bookings') }}"> <i class="icon-home"></i>Bookings</a>
             </li>
         </ul>
     </nav>
