@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Room;
 use App\Models\Booking;
+use App\Models\Gallery;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -18,7 +19,8 @@ class AdminController extends Controller
 
             if ($usertype == 'user') {
                 $room = Room::all();
-                return view('home.index', compact('room'));
+                $gallery = Gallery::all();
+                return view('home.index', compact('room', 'gallery'));
             } else if ($usertype == 'admin') {
                 return view('admin.index');
             } else {
@@ -29,7 +31,8 @@ class AdminController extends Controller
     public function home()
     {
         $room = Room::all();
-        return view('home.index', compact('room'));
+        $gallery = Gallery::all();
+        return view('home.index', compact('room', 'gallery'));
     }
 
     public function create_room()
@@ -91,6 +94,7 @@ class AdminController extends Controller
         return redirect('/view_room')->with('message', 'Room updated successfully');
     }
 
+    // Booking Management
     public function bookings()
     {
         $data = Booking::all();
@@ -118,5 +122,33 @@ class AdminController extends Controller
         $booking->status = 'Rejected';
         $booking->save();
         return redirect()->back()->with('message', 'Booking rejected successfully');
+    }
+
+    // Gallery Management
+    public function view_gallery()
+    {
+        $gallery = Gallery::all();
+        return view('admin.gallery', compact('gallery'));
+    }
+
+    public function upload_gallery(Request $request)
+    {
+        $data = new Gallery;
+        $image = $request->image;
+
+        if ($image) {
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('gallery', $imagename);
+            $data->image = $imagename;
+            $data->save();
+            return redirect()->back()->with('message', 'Image uploaded successfully');
+        }
+    }
+
+    public function delete_gallery($id)
+    {
+        $data = Gallery::findOrFail($id);
+        $data->delete();
+        return redirect()->back()->with('message', 'Image deleted successfully');
     }
 }

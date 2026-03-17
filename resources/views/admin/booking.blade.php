@@ -181,7 +181,6 @@
     <div class="page-content">
         <div class="page-header">
             <div class="container-fluid">
-
                 <table class="table_deg">
                     <tr>
                         <th class="th_deg">Room id</th>
@@ -197,7 +196,6 @@
                         <th class="th_deg">Delete</th>
                         <th class="th_deg">Status Update</th>
                     </tr>
-
                     @foreach ($data as $data)
                         <tr>
                             <td>{{ $data->room_id }}</td>
@@ -207,7 +205,6 @@
                             <td>{{ $data->start_date }}</td>
                             <td>{{ $data->end_date }}</td>
                             <td>{{ $data->room?->room_title }}</td>
-
                             <td>
                                 @if ($data->status == 'Approved')
                                     <span class="badge badge-success">{{ $data->status }}</span>
@@ -217,25 +214,20 @@
                                     <span class="badge badge-warning">{{ $data->status }}</span>
                                 @endif
                             </td>
-
                             <td>{{ $data->room?->price }}</td>
-
                             <td>
                                 <img src="/room/{{ $data->room?->image }}" class="room_img">
                             </td>
-
                             <td>
                                 <form action="{{ url('delete_booking', $data->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-
                                     <button class="btn btn-danger"
                                         onclick="return confirm('Are you sure you want to delete this booking?')">
                                         Delete
                                     </button>
                                 </form>
                             </td>
-
                             <td>
                                 <span>
                                     <form action="{{ url('approve_book', $data->id) }}" method="POST"
@@ -248,16 +240,13 @@
                                         </button>
                                     </form>
                                 </span>
-
                                 <a class="btn btn-warning" href="{{ url('reject_book', $data->id) }}">
                                     Rejected
                                 </a>
                             </td>
                         </tr>
                     @endforeach
-
                 </table>
-
             </div>
         </div>
     </div>
