@@ -7,6 +7,10 @@ use App\Models\User;
 use App\Models\Room;
 use App\Models\Booking;
 use App\Models\Gallery;
+use App\Models\Contact;
+
+use App\Notifications\SendEmailNotification;
+use Notification;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -94,7 +98,6 @@ class AdminController extends Controller
         return redirect('/view_room')->with('message', 'Room updated successfully');
     }
 
-    // Booking Management
     public function bookings()
     {
         $data = Booking::all();
@@ -124,7 +127,6 @@ class AdminController extends Controller
         return redirect()->back()->with('message', 'Booking rejected successfully');
     }
 
-    // Gallery Management
     public function view_gallery()
     {
         $gallery = Gallery::all();
@@ -150,5 +152,32 @@ class AdminController extends Controller
         $data = Gallery::findOrFail($id);
         $data->delete();
         return redirect()->back()->with('message', 'Image deleted successfully');
+    }
+
+    public function all_messages()
+    {
+        $data = Contact::all();
+        return view('admin.all_messages', compact('data'));
+    }
+
+    public function send_mail($id)
+    {
+        $data = Contact::findOrFail($id);
+        return view('admin.send_mail', compact('data'));
+    }
+
+    public function mail(Request $request, $id)
+    {
+        $data = Contact::findOrFail($id);
+        $details = [
+            'greeting' => $request->greeting,
+            'body' => $request->body,
+            'action_text' => $request->action_text,
+            'action_url' => $request->action_url,
+            'endline' => $request->endline,
+        ];
+
+        Notification::send($data, new SendEmailNotification($details));
+        return redirect()->back()->with('message', 'Email sent successfully');
     }
 }

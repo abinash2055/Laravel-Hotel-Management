@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Booking;
+use App\Models\Contact;
 
 class HomeController extends Controller
 {
@@ -46,5 +47,24 @@ class HomeController extends Controller
 
             return redirect()->back()->with('message', 'Room Booked successfully!');
         }
+    }
+
+    public function contact(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'message' => 'required|string',
+        ]);
+
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->message = $request->message;
+        $contact->save();
+
+        return redirect()->back()->with('message', 'Your message has been sent successfully!');
     }
 }

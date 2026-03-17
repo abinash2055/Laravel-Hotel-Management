@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 // Admin Controller
 Route::get('/', [AdminController::class, 'home']);
 Route::get('/home', [AdminController::class, 'index'])->name('home');
+
+// Room Management
 Route::get('/create_room', [AdminController::class, 'create_room']);
 Route::post('/add_room', [AdminController::class, 'add_room']);
 Route::get('/view_room', [AdminController::class, 'view_room']);
@@ -25,7 +27,16 @@ Route::get('/view_gallery', [AdminController::class, 'view_gallery']);
 Route::post('/upload_gallery', [AdminController::class, 'upload_gallery']);
 Route::get('/delete_gallery/{id}', [AdminController::class, 'delete_gallery']);
 
+// Admin Contact Management
+Route::get('/all_messages', [AdminController::class, 'all_messages']);
+Route::get('/send_mail/{id}', [AdminController::class, 'send_mail']);
+Route::post('/mail/{id}', [AdminController::class, 'mail']);
+
+
 
 // Home Controller
 Route::get('/room_details/{id}', [HomeController::class, 'room_details']);
 Route::post('/add_booking/{id}', [HomeController::class, 'add_booking']);
+
+// Contact Management
+Route::post('/contact', [HomeController::class, 'contact']);
