@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 
 // Admin Controller
-Route::get('/', [AdminController::class, 'home'])->middleware('auth', 'admin');
+Route::get('/', [AdminController::class, 'home']);
 Route::get('/home', [AdminController::class, 'index'])->name('home');
 
 // Admin Room Management
